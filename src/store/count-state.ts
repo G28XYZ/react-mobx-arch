@@ -1,19 +1,17 @@
-import { makeAutoObservable } from "mobx";
-import { makeLoggable } from "mobx-log";
+import { observable, runInAction } from "mobx";
+import ModelStore from "./model-store";
 
-class CounterStore {
+const CounterProps = {
+  value: observable,
+};
+
+class CounterStore extends ModelStore {
+  initialProps = CounterProps;
   value = 0;
 
-  constructor() {
-    makeAutoObservable(this);
-    makeLoggable(this);
-  }
+  inc = () => runInAction(() => this.value++);
 
-  init = () => this;
-
-  inc = () => this.value++;
-
-  dec = () => this.value--;
+  dec = () => runInAction(() => this.value--);
 }
 
 export default CounterStore;

@@ -10,7 +10,7 @@ export default function useTranslate() {
   const storeLocale = useStore().get("locale");
 
   // Функция для смены локаль
-  const setLanguage = useCallback((lang) => storeLocale.setLang(lang), []);
+  const setLanguage = useCallback((lang: string) => storeLocale.setLang(lang), []);
   // Текущий установленный язык
   const language = storeLocale.lang;
 

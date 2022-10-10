@@ -16,7 +16,7 @@ function LocaleSelect() {
   };
 
   const onSelect = useCallback(
-    (e) => {
+    (e: any) => {
       setLanguage(e.target.value);
     },
     [setLanguage]
@@ -34,7 +34,7 @@ function LocaleSelect() {
 }
 
 const Header = observer(() => {
-  const lang = useTranslate().lang();
+  const lang = useTranslate().lang() as any;
 
   return (
     <header style={{ display: "flex", padding: 20, width: "100%", boxSizing: "border-box" }}>

@@ -6,13 +6,13 @@ import Spinner from "../spinner/Spinner";
 
 export const Auth = observer(() => {
   const authStore = useStore().get("auth");
-  const lang = useTranslate().lang();
+  const lang = useTranslate().lang() as any;
   const callbacks = {
-    onSubmit: useCallback((e) => {
+    onSubmit: useCallback((e: any) => {
       e.preventDefault();
       authStore.auth();
     }, []),
-    onChange: useCallback((e) => authStore.setForm(e.target.name, e.target.value), []),
+    onChange: useCallback((e: any) => authStore.setForm(e.target.name, e.target.value), []),
     onCancelChange: useCallback(() => authStore.clearForm(), []),
   };
 
@@ -20,10 +20,7 @@ export const Auth = observer(() => {
     <div style={{ maxWidth: 400 }}>
       <Spinner active={authStore.waiting}>
         <h3>{lang.auth.title}</h3>
-        <form
-          onSubmit={callbacks.onSubmit}
-          style={{ display: "flex", flexDirection: "column", margin: "inherit", gap: 10 }}
-        >
+        <form onSubmit={callbacks.onSubmit} style={{ display: "flex", flexDirection: "column", margin: "inherit", gap: 10 }}>
           <input
             placeholder={lang.auth.placeholder.email + "alex@alex.ru"}
             name="email"

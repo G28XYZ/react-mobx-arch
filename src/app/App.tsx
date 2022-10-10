@@ -8,8 +8,6 @@ import Header from "../components/header/Header";
 import Random from "../components/random/Random";
 
 const App = observer(() => {
-  const notesStore = useStore().get("notes");
-
   return (
     <div className="page">
       <Header />

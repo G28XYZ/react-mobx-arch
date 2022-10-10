@@ -26,6 +26,7 @@ const config = {
       template: "./index.html",
       filename: "./index.html",
       base: "/",
+      favicon: "favicon.ico",
     }),
     new CleanWebpackPlugin(),
   ],
@@ -50,12 +51,7 @@ const config = {
       // С опцией modules при импорте стиля получаем объект с названиями ccs классов
       {
         test: /\.(sc|sa|c)ss$/,
-        use: [
-          { loader: "style-loader" },
-          { loader: "css-loader" },
-          { loader: "sass-loader" },
-          { loader: "postcss-loader" },
-        ],
+        use: [{ loader: "style-loader" }, { loader: "css-loader" }, { loader: "sass-loader" }, { loader: "postcss-loader" }],
       },
     ],
   },

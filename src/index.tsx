@@ -3,15 +3,19 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./app/App";
 import * as serviceWorker from "./serviceWorker";
-import { ServiceProvider } from "./services/service-provider";
+import { ServicesProvider } from "./services/services-provider";
+import Services from "./services/services";
+import config from "./services/config";
+
+const services = new Services(config);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <ServiceProvider>
+    <ServicesProvider services={services}>
       <App />
-    </ServiceProvider>
+    </ServicesProvider>
   </React.StrictMode>
 );
 

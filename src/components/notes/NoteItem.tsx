@@ -2,7 +2,7 @@ import { observer } from "mobx-react-lite";
 import { useCallback } from "react";
 import { useStore } from "../../hooks/use-store";
 
-const NoteItem = observer(({ note }) => {
+const NoteItem = observer(({ note }: any) => {
   const notesStore = useStore().get("notes");
 
   const callbacks = {

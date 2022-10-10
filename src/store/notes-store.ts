@@ -1,27 +1,33 @@
-import { makeAutoObservable } from "mobx";
+import { observable, runInAction } from "mobx";
 import { nanoid } from "nanoid";
-import { makeLoggable } from "mobx-log";
+import ModelStore from "./model-store";
 
-class NotesStore {
+const NotesProps = {
+  notes: observable,
+  noteText: observable,
+};
+class NotesStore extends ModelStore {
+  initialProps = NotesProps;
   notes: any = [];
+  noteText: string = "";
 
-  constructor() {}
-
-  init() {
-    makeAutoObservable(this);
-    makeLoggable(this);
-    return this;
+  setNoteText(text: string) {
+    runInAction(() => (this.noteText = text));
   }
 
-  addNote(text: string) {
-    this.notes.push({
-      text,
-      id: nanoid(),
-    });
+  addNote() {
+    this.noteText &&
+      runInAction(() => {
+        this.notes.push({
+          text: this.noteText,
+          id: nanoid(),
+        });
+        this.noteText = "";
+      });
   }
 
   removeNote(id: string) {
-    this.notes = this.notes.filter((note: any) => note.id !== id);
+    runInAction(() => (this.notes = this.notes.filter((note: any) => note.id !== id)));
   }
 }
 

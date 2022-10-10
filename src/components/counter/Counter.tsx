@@ -3,7 +3,7 @@ import { useStore } from "../../hooks/use-store";
 import useTranslate from "../../hooks/use-translate";
 
 const Counter = observer(() => {
-  const lang = useTranslate().lang();
+  const lang = useTranslate().lang() as any;
 
   const counterStore = useStore().get("counter");
   return (

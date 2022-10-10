@@ -1,34 +1,33 @@
-import { makeAutoObservable, runInAction } from "mobx";
-import { makeLoggable } from "mobx-log";
+import { observable, runInAction } from "mobx";
 import ModelStore from "./model-store";
+
+export const AuthProps = {
+  waiting: observable,
+  email: observable,
+  password: observable,
+  token: observable,
+};
 
 // Или AuthView
 class AuthStore extends ModelStore {
+  initialProps = AuthProps;
   waiting = false;
   email = "";
   password = "";
   token = "";
 
-  // constructor(services = {}) {
-  //   this.services = services;
-  //   makeAutoObservable(this);
-  //   makeLoggable(this);
-  // }
-
-  // init() {
-  //   return this;
-  // }
-
-  setForm(name, value) {
-    name === "email" && (this.email = value);
-    name === "password" && (this.password = value);
+  setForm(name: string, value: string) {
+    runInAction(() => {
+      name === "email" && (this.email = value);
+      name === "password" && (this.password = value);
+    });
   }
 
   /**
    * Авторизация
    */
   async auth() {
-    this.waiting = true;
+    runInAction(() => (this.waiting = true));
     try {
       const response = await this.services.api.request({
         url: "/api/signin",
@@ -50,8 +49,10 @@ class AuthStore extends ModelStore {
   }
 
   clearForm() {
-    this.password = "";
-    this.email = "";
+    runInAction(() => {
+      this.password = "";
+      this.email = "";
+    });
   }
 }
 
