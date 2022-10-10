@@ -2,13 +2,12 @@ import * as view from "./exports";
 
 const modules: any = view;
 
-class MainStore {
+class Store {
   // Модули
   modules: any = {};
   services: any;
   config: any;
   state: any;
-  listeners: any;
 
   constructor(services = {}, config = {}) {
     // Менеджер сервисов
@@ -55,4 +54,4 @@ class MainStore {
   }
 }
 
-export default MainStore;
+export default Store;

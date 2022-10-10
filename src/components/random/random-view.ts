@@ -1,5 +1,5 @@
 import { observable, runInAction } from "mobx";
-import ModelStore from "./model-store";
+import ModelStore from "../../store/model-store";
 
 const RandomProps = {
   catLink: observable,
@@ -20,7 +20,7 @@ class RandomStore extends ModelStore {
   clearInterval = () => clearInterval(this.interval);
 
   async getCat() {
-    this.setState(this.getProps(), "Обновление картинки");
+    // this.setState(this.getProps(), "Обновление картинки");
     runInAction(() => (this.waiting = true));
     try {
       const response = await this.services.api.request({ url: "/random/img/cat" });
@@ -28,7 +28,7 @@ class RandomStore extends ModelStore {
         this.catLink = response.link;
       });
     } catch (e) {
-      this.setState(this.getProps(), "Ошибка при запросе картинки");
+      // this.setState(this.getProps(), "Ошибка при запросе картинки");
       runInAction(() => {
         this.catLink = "Error response";
       });

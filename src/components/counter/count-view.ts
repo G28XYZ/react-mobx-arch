@@ -1,11 +1,11 @@
 import { observable, runInAction } from "mobx";
-import ModelStore from "./model-store";
+import ModelStore from "../../store/model-store";
 
 const CounterProps = {
   value: observable,
 };
 
-class CounterStore extends ModelStore {
+class CounterView extends ModelStore {
   initialProps = CounterProps;
   value = 0;
 
@@ -14,4 +14,4 @@ class CounterStore extends ModelStore {
   dec = () => runInAction(() => this.value--);
 }
 
-export default CounterStore;
+export default CounterView;

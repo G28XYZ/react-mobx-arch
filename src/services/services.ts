@@ -1,5 +1,5 @@
 import APIService from "../api/api";
-import MainStore from "../store/main-store";
+import Store from "../store/store";
 
 class Services {
   private _store: any;
@@ -14,9 +14,9 @@ class Services {
    * Сервис Store
    * @returns {Store}
    */
-  get store(): MainStore {
+  get store(): Store {
     if (!this._store) {
-      this._store = new MainStore(this, this.config.store);
+      this._store = new Store(this, this.config.store);
     }
     return this._store;
   }

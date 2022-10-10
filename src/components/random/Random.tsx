@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useStore } from "../../hooks/use-store";
 import Spinner from "../spinner/Spinner";
 
@@ -21,4 +21,4 @@ const Random = observer(() => {
   );
 });
 
-export default Random;
+export default React.memo(Random);

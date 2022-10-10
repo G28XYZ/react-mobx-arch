@@ -1,22 +1,21 @@
+import React, { FC } from "react";
 import "./App.css";
-import { NewNoteForm } from "../components/notes/NewNoteForm";
-import { useStore } from "../hooks/use-store";
-import { observer } from "mobx-react-lite";
-import Counter from "../components/counter/Counter";
-import { Auth } from "../components/auth/Auth";
-import Header from "../components/header/Header";
-import Random from "../components/random/Random";
+import NoteForm from "../components/notes";
+import Counter from "../components/counter";
+import Auth from "../components/auth/Auth";
+import Header from "../components/header";
+import Random from "../components/random";
 
-const App = observer(() => {
+const App: FC = () => {
   return (
     <div className="page">
       <Header />
-      <NewNoteForm />
+      <NoteForm />
       <Counter />
       <Auth />
       <Random />
     </div>
   );
-});
+};
 
-export default App;
+export default React.memo(App);

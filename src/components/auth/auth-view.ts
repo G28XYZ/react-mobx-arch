@@ -1,5 +1,22 @@
 import { observable, runInAction } from "mobx";
-import ModelStore from "./model-store";
+import { Inject } from "typedi";
+import ModelStore from "../../store/model-store";
+import AuthService from "./service";
+
+interface IAuthService {
+  auth(form: any): Promise<any>;
+}
+
+interface IAuthProps {
+  waiting: boolean;
+  email: string;
+  password: string;
+  token: string;
+}
+interface IAuthView extends IAuthProps {
+  auth(): Promise<void>;
+  clearForm(): void;
+}
 
 export const AuthProps = {
   waiting: observable,
@@ -8,8 +25,7 @@ export const AuthProps = {
   token: observable,
 };
 
-// Или AuthView
-class AuthStore extends ModelStore {
+class AuthView extends ModelStore implements IAuthView {
   initialProps = AuthProps;
   waiting = false;
   email = "";
@@ -27,17 +43,15 @@ class AuthStore extends ModelStore {
    * Авторизация
    */
   async auth() {
+    console.log(this.authService);
     runInAction(() => (this.waiting = true));
     try {
-      const response = await this.services.api.request({
-        url: "/api/signin",
-        method: "POST",
-        body: JSON.stringify({ email: this.email, password: this.password }),
-      });
+      const response = await this.authService.auth({ email: this.email, password: this.password });
       runInAction(() => {
         this.token = response.token;
       });
     } catch (e) {
+      console.log(e);
       runInAction(() => {
         this.token = "Error";
       });
@@ -54,6 +68,7 @@ class AuthStore extends ModelStore {
       this.email = "";
     });
   }
+  @Inject("AuthService") private authService: AuthService;
 }
 
-export default AuthStore;
+export default AuthView;

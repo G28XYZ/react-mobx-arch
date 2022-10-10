@@ -1,4 +1,5 @@
 import { observer } from "mobx-react-lite";
+import React from "react";
 import { useStore } from "../../hooks/use-store";
 import useTranslate from "../../hooks/use-translate";
 
@@ -16,4 +17,4 @@ const Counter = observer(() => {
   );
 });
 
-export default Counter;
+export default React.memo(Counter);

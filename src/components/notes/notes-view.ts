@@ -1,6 +1,6 @@
 import { observable, runInAction } from "mobx";
 import { nanoid } from "nanoid";
-import ModelStore from "./model-store";
+import ModelStore from "../../store/model-store";
 
 const NotesProps = {
   notes: observable,

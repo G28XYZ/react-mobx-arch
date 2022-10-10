@@ -1,11 +1,12 @@
-import { makeObservable } from "mobx";
+import { IObservableFactory, makeObservable } from "mobx";
 import { makeLoggable } from "mobx-log";
 
-class ModelStore {
+interface IModel {}
+class ModelStore implements IModel {
   store: any;
   config: any;
   services: any;
-  initialProps: any;
+  initialProps: Record<string, IObservableFactory>;
 
   constructor(store: any, config: any) {
     this.store = store;

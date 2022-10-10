@@ -4,7 +4,7 @@ import { useStore } from "../../hooks/use-store";
 import useTranslate from "../../hooks/use-translate";
 import NoteItem from "./NoteItem";
 
-export const NewNoteForm = observer(() => {
+const NoteForm = observer(() => {
   const lang = useTranslate().lang() as any;
 
   const notesStore = useStore().get("notes");
@@ -27,3 +27,4 @@ export const NewNoteForm = observer(() => {
     </>
   );
 });
+export default React.memo(NoteForm);

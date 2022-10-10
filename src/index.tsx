@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./app/App";
 import * as serviceWorker from "./serviceWorker";
 import { ServicesProvider } from "./services/services-provider";
-import Services from "./services/services";
+import Services from "./services";
 import config from "./services/config";
 
 const services = new Services(config);

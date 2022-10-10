@@ -1,10 +1,10 @@
 import { observer } from "mobx-react-lite";
-import { useCallback } from "react";
+import React, { useCallback } from "react";
 import { useStore } from "../../hooks/use-store";
 import useTranslate from "../../hooks/use-translate";
 import Spinner from "../spinner/Spinner";
 
-export const Auth = observer(() => {
+const Auth = observer(() => {
   const authStore = useStore().get("auth");
   const lang = useTranslate().lang() as any;
   const callbacks = {
@@ -49,3 +49,5 @@ export const Auth = observer(() => {
     </div>
   );
 });
+
+export default React.memo(Auth);
