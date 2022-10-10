@@ -1,23 +1,23 @@
 import { makeAutoObservable, runInAction } from "mobx";
 import { makeLoggable } from "mobx-log";
+import ModelStore from "./model-store";
 
 // Или AuthView
-class AuthStore {
-  notes = [];
+class AuthStore extends ModelStore {
   waiting = false;
   email = "";
   password = "";
   token = "";
 
-  constructor(services = {}) {
-    this.services = services;
-    makeAutoObservable(this);
-    makeLoggable(this);
-  }
+  // constructor(services = {}) {
+  //   this.services = services;
+  //   makeAutoObservable(this);
+  //   makeLoggable(this);
+  // }
 
-  init() {
-    return this;
-  }
+  // init() {
+  //   return this;
+  // }
 
   setForm(name, value) {
     name === "email" && (this.email = value);
