@@ -1,17 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./App";
+import App from "./app/App";
 import * as serviceWorker from "./serviceWorker";
-import { NotesProvider } from "./NotesContext";
+import { ServiceProvider } from "./services/service-provider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <NotesProvider>
+    <ServiceProvider>
       <App />
-    </NotesProvider>
+    </ServiceProvider>
   </React.StrictMode>
 );
 

@@ -1,4 +1,4 @@
-import APIService from "./api";
+import APIService from "../api/api";
 import config from "./config";
 
 class Services {

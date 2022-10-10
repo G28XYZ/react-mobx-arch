@@ -1,6 +1,7 @@
-import { makeAutoObservable } from "mobx";
-import { nanoid } from "nanoid";
+import { makeAutoObservable, runInAction } from "mobx";
+import { makeLoggable } from "mobx-log";
 
+// Или AuthView
 class AuthStore {
   notes = [];
   waiting = false;
@@ -11,17 +12,16 @@ class AuthStore {
   constructor(services = {}) {
     this.services = services;
     makeAutoObservable(this);
+    makeLoggable(this);
   }
 
   init() {
-    console.log("init auth");
     return this;
   }
 
   setForm(name, value) {
     name === "email" && (this.email = value);
     name === "password" && (this.password = value);
-    console.log(name, value);
   }
 
   /**
@@ -29,18 +29,23 @@ class AuthStore {
    */
   async auth() {
     this.waiting = true;
-
     try {
       const response = await this.services.api.request({
-        url: "/signin",
+        url: "/api/signin",
         method: "POST",
         body: JSON.stringify({ email: this.email, password: this.password }),
       });
-      console.log(response);
-      this.token = response.token;
-      this.waiting = false;
+      runInAction(() => {
+        this.token = response.token;
+      });
     } catch (e) {
-      this.waiting = false;
+      runInAction(() => {
+        this.token = "Error";
+      });
+    } finally {
+      runInAction(() => {
+        this.waiting = false;
+      });
     }
   }
 

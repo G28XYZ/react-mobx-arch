@@ -1,10 +1,17 @@
-import config from "./config";
+import config from "../services/config";
 import * as m from "./exports";
-import services from "./services";
+import services from "../services/services";
 
-const modules = m;
+const modules: any = m;
 
 class MainStore {
+  // Модули
+  modules: any = {};
+  services: any;
+  config: any;
+  state: any;
+  listeners: any;
+
   constructor({ services = {}, config = {} }) {
     // Менеджер сервисов
     this.services = services;
@@ -17,8 +24,6 @@ class MainStore {
     // Слушатели изменений state
     this.listeners = [];
 
-    // Модули
-    this.modules = {};
     for (const name of Object.keys(modules)) {
       // Экземпляр модуля. Передаём ему ссылку на store и название модуля.
       this.modules[name] = new modules[name](this.services);
@@ -27,7 +32,7 @@ class MainStore {
     }
   }
 
-  get(name) {
+  get(name: string) {
     return this.modules[name];
   }
 }

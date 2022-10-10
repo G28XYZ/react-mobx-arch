@@ -1,13 +1,15 @@
 import { makeAutoObservable } from "mobx";
+import { makeLoggable } from "mobx-log";
 
 /**
- * Состояние товара
+ * Состояние locale
  */
 class LocaleStore {
   lang = "ru";
 
   constructor() {
     makeAutoObservable(this);
+    makeLoggable(this);
   }
 
   /**
@@ -15,7 +17,6 @@ class LocaleStore {
    * @return {Object}
    */
   init() {
-    console.log("init locale");
     return this;
   }
 

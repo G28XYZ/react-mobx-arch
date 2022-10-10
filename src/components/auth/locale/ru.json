@@ -1,0 +1,13 @@
+{
+  "auth": {
+    "title": "Авторизация",
+    "buttons": {
+      "send": "Отправить",
+      "cancel": "Отмена"
+    },
+    "placeholder": {
+      "email": "Тестовый email - ",
+      "password": "Пароль - "
+    }
+  }
+}

@@ -13,7 +13,7 @@ const config = {
   },
 
   api: {
-    baseUrl: "https://rocky-wildwood-04132.herokuapp.com",
+    baseUrl: "",
   },
 };
 

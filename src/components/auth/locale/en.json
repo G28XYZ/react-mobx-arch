@@ -1,0 +1,13 @@
+{
+  "auth": {
+    "title": "Authorization",
+    "buttons": {
+      "send": "Send",
+      "cancel": "Cancel"
+    },
+    "placeholder": {
+      "email": "Test email - ",
+      "password": "Password "
+    }
+  }
+}
