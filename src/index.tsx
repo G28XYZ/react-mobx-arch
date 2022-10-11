@@ -1,3 +1,5 @@
+import "reflect-metadata";
+import { Container } from "typedi";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
@@ -6,15 +8,19 @@ import * as serviceWorker from "./serviceWorker";
 import { ServicesProvider } from "./services/services-provider";
 import Services from "./services";
 import config from "./services/config";
+import { Provider } from "mobx-react";
 
 const services = new Services(config);
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
+
+Container.set("Services", services);
 
 root.render(
   <React.StrictMode>
     <ServicesProvider services={services}>
-      <App />
+      <Provider container={Container}>
+        <App />
+      </Provider>
     </ServicesProvider>
   </React.StrictMode>
 );

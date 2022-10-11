@@ -1,16 +1,20 @@
-import { Service } from "typedi";
-import ModelStore from "../../store/model-store";
+import Container, { Inject } from "typedi";
+import APIService from "../../api/api";
 
-@Service("AuthService")
-class AuthService extends ModelStore {
+interface IAuthService {
+  auth(form: any): Promise<any>;
+}
+
+export class AuthService implements IAuthService {
   auth(form: any) {
-    console.log(form);
-    return this.services.api.request({
+    return this.apiService.request({
       url: "/api/signin",
       method: "POST",
       body: JSON.stringify(form),
     });
   }
+
+  @Inject("APIService") private apiService: APIService;
 }
 
-export default AuthService;
+Container.set("AuthService", new AuthService());

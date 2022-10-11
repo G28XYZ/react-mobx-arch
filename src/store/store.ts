@@ -1,6 +1,8 @@
-import * as view from "./exports";
+import Container from "typedi";
 
-const modules: any = view;
+import * as views from "./exports";
+
+const modules: any = views;
 
 class Store {
   // Модули
@@ -19,8 +21,10 @@ class Store {
     // Состояние приложения (данные)
     this.state = {};
     for (const name of Object.keys(modules)) {
+      console.log(name);
       // Экземпляр модуля. Передаём ему ссылку на store и название модуля.
-      this.modules[name] = new modules[name](this, { name, ...(this.config.modules[name] || {}) });
+      this.modules[name] = new modules[name](this, { name, ...(this.config?.modules[name] || {}) });
+      Container.set(`${name[0].toUpperCase()}${name.slice(1)}View`, this.modules[name]);
       // По названию модуля устанавливается свойство с начальным состоянием от модуля
       this.state[name] = this.modules[name].initStore();
     }

@@ -1,4 +1,9 @@
+import { Service } from "typedi";
+
+@Service("APIService")
 class APIService {
+  config: any;
+  defaultHeaders: any;
   /**
    * @param services {Services} Менеджер сервисов
    * @param config {Object}
@@ -21,7 +26,7 @@ class APIService {
    * @param options
    * @returns {Promise<any>}
    */
-  async request({ url, method = "GET", headers = {}, ...options }) {
+  async request({ url, method = "GET", headers = {}, ...options }: any) {
     if (!url.match(/^(http|\/\/)/)) url = this.config.baseUrl + url;
     const res = await fetch(url, {
       method,
@@ -36,7 +41,7 @@ class APIService {
    * @param name {String} Название заголовка
    * @param value {String|null} Значение заголовка
    */
-  setHeader(name, value = null) {
+  setHeader(name: string, value: any = null) {
     if (value) {
       this.defaultHeaders[name] = value;
     } else if (this.defaultHeaders[name]) {

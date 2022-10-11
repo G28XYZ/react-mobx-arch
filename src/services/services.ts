@@ -1,4 +1,5 @@
 import APIService from "../api/api";
+import { Container } from "typedi";
 import Store from "../store/store";
 
 class Services {
@@ -17,6 +18,7 @@ class Services {
   get store(): Store {
     if (!this._store) {
       this._store = new Store(this, this.config.store);
+      Container.set("Store", this._store);
     }
     return this._store;
   }
@@ -28,6 +30,7 @@ class Services {
   get api(): APIService {
     if (!this._api) {
       this._api = new APIService(this.config.api);
+      Container.set("APIService", this._api);
     }
     return this._api;
   }

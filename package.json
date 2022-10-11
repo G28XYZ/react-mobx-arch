@@ -69,9 +69,11 @@
     "mobx": "^6.6.2",
     "mobx-log": "^2.0.1",
     "mobx-logger": "^0.7.1",
+    "mobx-react": "^7.5.3",
     "mobx-react-lite": "^3.4.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
+    "reflect-metadata": "^0.1.13",
     "shallowequal": "^1.1.0",
     "shortid": "^2.2.16",
     "typedi": "^0.10.0"
