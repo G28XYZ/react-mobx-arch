@@ -1,14 +1,14 @@
 import { observer } from "mobx-react-lite";
-import React, { useEffect } from "react";
-import { useStore } from "../../hooks/use-store";
-import Spinner from "../spinner/Spinner";
+import { useEffect } from "react";
+import { useStore } from "../../../hooks/use-store";
+import Spinner from "../../spinner/Spinner";
 
-const Random = observer(() => {
-  const randomView = useStore().get("random");
+export const Random = observer(() => {
+  const randomView = useStore().get("RandomViewModel");
 
   useEffect(() => {
     randomView.initInterval();
-    return () => randomView.clearInterval();
+    return () => randomView.onClearInterval();
   }, []);
 
   return (
@@ -20,5 +20,3 @@ const Random = observer(() => {
     </div>
   );
 });
-
-export default React.memo(Random);

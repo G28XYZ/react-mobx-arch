@@ -1,12 +1,14 @@
 import { observable, runInAction } from "mobx";
-import ModelStore from "../../store/model-store";
+import { Service } from "typedi";
+import ModelStore from "../../../store/model-store";
 
 const RandomProps = {
   catLink: observable,
   waiting: observable,
 };
 
-class RandomStore extends ModelStore {
+@Service("RandomViewModel")
+export class RandomViewModel extends ModelStore {
   initialProps = RandomProps;
   catLink = "";
   waiting = false;
@@ -14,10 +16,10 @@ class RandomStore extends ModelStore {
 
   initInterval() {
     !this.catLink && this.getCat();
-    this.interval = setInterval(() => this.getCat(), 10000);
+    this.interval = setInterval(() => this.getCat(), 6e4);
   }
 
-  clearInterval = () => clearInterval(this.interval);
+  onClearInterval = () => clearInterval(this.interval);
 
   async getCat() {
     // this.setState(this.getProps(), "Обновление картинки");
@@ -39,5 +41,3 @@ class RandomStore extends ModelStore {
     }
   }
 }
-
-export default RandomStore;

@@ -1,13 +1,13 @@
 import { observer } from "mobx-react-lite";
 import React, { useCallback } from "react";
-import { useStore } from "../../hooks/use-store";
-import useTranslate from "../../hooks/use-translate";
-import NoteItem from "./NoteItem";
+import { useStore } from "../../../hooks/use-store";
+import useTranslate from "../../../hooks/use-translate";
+import { NoteItem } from "./NoteItem";
 
-const NoteForm = observer(() => {
+export const NoteForm = observer(() => {
   const lang = useTranslate().lang() as any;
 
-  const notesStore = useStore().get("notes");
+  const notesStore = useStore().get("NotesViewModel");
 
   const callbacks = {
     onChange: useCallback((e: any) => notesStore.setNoteText(e.target.value), []),
@@ -27,4 +27,3 @@ const NoteForm = observer(() => {
     </>
   );
 });
-export default React.memo(NoteForm);

@@ -1,1 +1,1 @@
-export { default } from "./NewNoteForm";
+export * from "./view";

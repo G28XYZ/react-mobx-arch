@@ -1,10 +1,10 @@
-import Container, { Inject } from "typedi";
-import APIService from "../../api/api";
+import { Inject, Service } from "typedi";
+import APIService from "../../../api/api";
 
 interface IAuthService {
   auth(form: any): Promise<any>;
 }
-
+@Service("AuthService")
 export class AuthService implements IAuthService {
   auth(form: any) {
     return this.apiService.request({
@@ -16,5 +16,3 @@ export class AuthService implements IAuthService {
 
   @Inject("APIService") private apiService: APIService;
 }
-
-Container.set("AuthService", new AuthService());

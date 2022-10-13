@@ -1,12 +1,12 @@
 import { observer } from "mobx-react-lite";
 import React from "react";
-import { useStore } from "../../hooks/use-store";
-import useTranslate from "../../hooks/use-translate";
+import { useStore } from "../../../hooks/use-store";
+import useTranslate from "../../../hooks/use-translate";
 
-const Counter = observer(() => {
+export const Counter = observer(() => {
   const lang = useTranslate().lang() as any;
 
-  const counterStore = useStore().get("counter");
+  const counterStore = useStore().get("CounterViewModel");
   return (
     <div style={{ display: "flex", justifyContent: "space-between" }}>
       <h3 style={{ margin: 0 }}>{lang.counter.title}</h3>
@@ -16,5 +16,3 @@ const Counter = observer(() => {
     </div>
   );
 });
-
-export default React.memo(Counter);

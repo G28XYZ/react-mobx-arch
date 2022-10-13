@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React, { useCallback, useMemo } from "react";
-import useTranslate from "../../hooks/use-translate";
+import useTranslate from "../../../hooks/use-translate";
 
 function LocaleSelect() {
   const { setLanguage, language } = useTranslate();
@@ -33,7 +33,7 @@ function LocaleSelect() {
   );
 }
 
-const Header = observer(() => {
+export const Header = observer(() => {
   const lang = useTranslate().lang() as any;
 
   return (
@@ -53,5 +53,3 @@ const Header = observer(() => {
     </header>
   );
 });
-
-export default React.memo(Header);

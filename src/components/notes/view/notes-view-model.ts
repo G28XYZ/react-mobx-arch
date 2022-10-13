@@ -1,12 +1,15 @@
 import { observable, runInAction } from "mobx";
+import { Service } from "typedi";
 import { nanoid } from "nanoid";
-import ModelStore from "../../store/model-store";
+import ModelStore from "../../../store/model-store";
 
 const NotesProps = {
   notes: observable,
   noteText: observable,
 };
-class NotesStore extends ModelStore {
+
+@Service("NotesViewModel")
+export class NotesViewModel extends ModelStore {
   initialProps = NotesProps;
   notes: any = [];
   noteText: string = "";
@@ -30,5 +33,3 @@ class NotesStore extends ModelStore {
     runInAction(() => (this.notes = this.notes.filter((note: any) => note.id !== id)));
   }
 }
-
-export default NotesStore;

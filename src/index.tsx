@@ -6,14 +6,14 @@ import "./index.css";
 import App from "./app/App";
 import * as serviceWorker from "./serviceWorker";
 import { ServicesProvider } from "./services/services-provider";
-import Services from "./services";
+export * from "./services";
+import Services from "./services/services";
 import config from "./services/config";
 import { Provider } from "mobx-react";
 
-const services = new Services(config);
+Container.set("Services", new Services(config));
+const services = Container.get("Services");
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
-Container.set("Services", services);
 
 root.render(
   <React.StrictMode>

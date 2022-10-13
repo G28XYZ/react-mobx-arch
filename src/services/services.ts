@@ -1,8 +1,11 @@
 import APIService from "../api/api";
-import { Container } from "typedi";
+import { Container, Inject, Service, Token } from "typedi";
 import Store from "../store/store";
 
+@Service("Services")
 class Services {
+  @Inject("Store") _Store: Store;
+  @Inject("APIService") _APIService: APIService;
   private _store: any;
   private _api: any;
   config: any;

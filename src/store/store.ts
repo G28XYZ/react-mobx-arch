@@ -1,9 +1,12 @@
-import Container from "typedi";
+import Container, { Service } from "typedi";
 
-import * as views from "./exports";
+import { viewModels } from "./exports";
 
-const modules: any = views;
+const modules: any = viewModels;
 
+console.log(viewModels);
+
+@Service("Store")
 class Store {
   // Модули
   modules: any = {};
@@ -21,10 +24,9 @@ class Store {
     // Состояние приложения (данные)
     this.state = {};
     for (const name of Object.keys(modules)) {
-      console.log(name);
+      Container.set(name, new modules[name](this, { name, ...(this.config?.modules[name] || {}) }));
       // Экземпляр модуля. Передаём ему ссылку на store и название модуля.
-      this.modules[name] = new modules[name](this, { name, ...(this.config?.modules[name] || {}) });
-      Container.set(`${name[0].toUpperCase()}${name.slice(1)}View`, this.modules[name]);
+      this.modules[name] = Container.get(name);
       // По названию модуля устанавливается свойство с начальным состоянием от модуля
       this.state[name] = this.modules[name].initStore();
     }

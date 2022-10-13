@@ -7,7 +7,7 @@ import translate from "../utils/translate";
  * Связан с кодом языка из внешнего состояния
  */
 export default function useTranslate() {
-  const storeLocale = useStore().get("locale");
+  const storeLocale = useStore().get("LocaleStore");
 
   // Функция для смены локаль
   const setLanguage = useCallback((lang: string) => storeLocale.setLang(lang), []);

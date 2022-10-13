@@ -1,11 +1,13 @@
 import { observable, runInAction } from "mobx";
-import ModelStore from "../../store/model-store";
+import { Service } from "typedi";
+import ModelStore from "../../../store/model-store";
 
 const CounterProps = {
   value: observable,
 };
 
-class CounterView extends ModelStore {
+@Service("CounterViewModel")
+export class CounterViewModel extends ModelStore {
   initialProps = CounterProps;
   value = 0;
 
@@ -13,5 +15,3 @@ class CounterView extends ModelStore {
 
   dec = () => runInAction(() => this.value--);
 }
-
-export default CounterView;

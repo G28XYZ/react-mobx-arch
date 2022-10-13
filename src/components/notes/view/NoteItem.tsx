@@ -1,8 +1,8 @@
 import { observer } from "mobx-react-lite";
 import React, { useCallback } from "react";
-import { useStore } from "../../hooks/use-store";
+import { useStore } from "../../../hooks/use-store";
 
-const NoteItem = observer(({ note }: any) => {
+export const NoteItem = observer(({ note }: any) => {
   const notesStore = useStore().get("notes");
 
   const callbacks = {
@@ -16,5 +16,3 @@ const NoteItem = observer(({ note }: any) => {
     </li>
   );
 });
-
-export default React.memo(NoteItem);

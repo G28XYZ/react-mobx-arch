@@ -1,4 +1,5 @@
 import { observable, runInAction } from "mobx";
+import { Service } from "typedi";
 import ModelStore from "./model-store";
 
 const LocalProps = {
@@ -8,7 +9,8 @@ const LocalProps = {
 /**
  * Состояние locale
  */
-class LocaleStore extends ModelStore {
+@Service("LocaleStore")
+export class LocaleStore extends ModelStore {
   initialProps = LocalProps;
   lang = "ru";
 
@@ -16,5 +18,3 @@ class LocaleStore extends ModelStore {
     runInAction(() => (this.lang = lang));
   }
 }
-
-export default LocaleStore;

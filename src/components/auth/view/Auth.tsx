@@ -1,11 +1,11 @@
 import { observer } from "mobx-react-lite";
 import React, { useCallback } from "react";
-import { useStore } from "../../hooks/use-store";
-import useTranslate from "../../hooks/use-translate";
-import Spinner from "../spinner/Spinner";
+import { useStore } from "../../../hooks/use-store";
+import useTranslate from "../../../hooks/use-translate";
+import Spinner from "../../spinner/Spinner";
 
-const Auth = observer(() => {
-  const authStore = useStore().get("auth");
+export const Auth = observer(() => {
+  const authStore = useStore().get("AuthViewModel");
   const lang = useTranslate().lang() as any;
   const callbacks = {
     onSubmit: useCallback((e: any) => {
@@ -49,5 +49,3 @@ const Auth = observer(() => {
     </div>
   );
 });
-
-export default React.memo(Auth);
